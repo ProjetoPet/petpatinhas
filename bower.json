@@ -1,0 +1,34 @@
+{
+  "name": "PetPatinhas",
+  "version": "4.0.0",
+  "dependencies": {
+    "core-elements": "Polymer/core-elements#~0.4.0",
+    "paper-elements": "Polymer/paper-elements#~0.4.0",
+    "polymer": "Polymer/polymer#~0.4.0"
+  },
+  "authors": [
+    "Octavio Turra <octavio.turra@gmail.com>"
+  ],
+  "description": "Rede social com temática voltada para animais de estimação",
+  "main": "app/index.html",
+  "keywords": [
+    "pet",
+    "animais",
+    "rede",
+    "social",
+    "social",
+    "media",
+    "social",
+    "wall"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.petpatinhas.com.br",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
