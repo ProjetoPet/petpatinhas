@@ -193,8 +193,13 @@ module.exports = function (grunt) {
           ]
         }]
       }
-    }
+    },
+		'gh-pages':{
+
+		}
   });
+
+	grunt.registerTask('grunt-gh-pages');
 
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
