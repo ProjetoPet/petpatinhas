@@ -194,9 +194,21 @@ module.exports = function (grunt) {
         }]
       }
     },
-		'gh-pages':{
-
-		}
+		'gh-pages': {
+            /*options: {
+                clone: 'bower_components/figure-box'
+            },*/
+            src: [
+                'app/**/*',
+            ]
+        },
+		json_server: {
+        options: {
+            port: 13337,
+            hostname: 'lodalhost',
+            db: 'app/data/pet.json'
+        }
+    }
   });
 
 	grunt.registerTask('grunt-gh-pages');

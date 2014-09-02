@@ -1,83 +1,101 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <polymer-element name="pet-patinhas" attributes="">
-   <template>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      :host {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-      }
-      #core_toolbar {
-        right: 0px;
-        left: 0px;
-        color: black;
-        fill: rgb(255, 255, 255);
-        top: 0px;
-        position: absolute;
-        background-color: rgb(255, 255, 255);
-      }
-      figure {
-        height: 200px;
-      }
-      img {
-        width: 100%;
-      }
-    </style>
-    <core-toolbar id="core_toolbar">
-      <div id="div" flex>
-        <strong id="strong">PET</strong>
-      </div>
-      <paper-button label="Pets que amo" icon="favorite" id="love"></paper-button>
-      <paper-button label="Sair" icon="exit-to-app" id="logout"></paper-button>
-    </core-toolbar>
-    <br>
-    <br>
-    <br>
-    <br>
-    <main class="row-fluid">
-      <figure-box src="http://lorempixum.com/600/600?1" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6">
-      	<header>Fluffy 1</header>
-      	<footer></footer>
-      	<menu>
-      		<paper-fab icon="favorite"></paper-fab>
-      	</menu>
-      </figure-box>
-      <figure-box src="http://lorempixum.com/600/600?2" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6">
-      	<header>Fluffy 2</header>
-      	<footer></footer>
-      	<menu>
-      		<paper-fab icon="favorite"></paper-fab>
-      	</menu>
-      </figure-box>
-      <figure-box src="http://lorempixum.com/600/600?3" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6">
-      	<header>Fluffy 3</header>
-      	<footer></footer>
-      	<menu>
-      		<paper-fab icon="favorite"></paper-fab>
-      	</menu>
-      </figure-box>
-      <figure-box src="http://lorempixum.com/600/600?4" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6">
-      	<header>Fluffy 4</header>
-      	<footer></footer>
-      	<menu>
-      		<paper-fab icon="favorite"></paper-fab>
-      	</menu>
-      </figure-box>
-      <figure-box src="http://lorempixum.com/600/600?5" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6">
-      	<header>Fluffy 5</header>
-      	<footer></footer>
-      	<menu>
-      		<paper-fab icon="favorite"></paper-fab>
-      	</menu>
-      </figure-box>
-    </main>
-  </template>
-  <script>
-    Polymer({
+	<template>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+		<style>
+			:host {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			core_toolbar {
+				right: 0px;
+				left: 0px;
+				color: black;
+				fill: rgb(255, 255, 255);
+				top: 0px;
+				position: absolute;
+				background-color: rgb(255, 255, 255);
+			}
+			core-header-panel {
+				float: left;
+				width: auto;
+				height: auto;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
+			core-header-panel[mode=cover]::shadow #mainContainer {
+				left: 70px;
+			}
+			.core-header {
+				height: 60px;
+				line-height: 60px;
+				font-size: 18px;
+				padding: 0 10px;
+				background-color: #f9f9f9;
+				color: #333;
+				transition: height 0.2s;
+				border-bottom: 1px solid #efefef;
+			}
+			.content {
+				background: #f9f9f9;
+			}
+			menu {
+				text-align: center;
+			}
+			paper-fab {
+				background: #de169a;
+				color: white;
+			}
+			.pink {
+				color: #de169a;
+			}
+			.blue {
+				color: #10b6d9;
+			}
+			.gray {
+				color: #666;
+			}
+		</style>
 
-    });
-  </script>
+		<core-ajax auto url="../data/pet.json" response="{{wall}}"></core-ajax>
+
+		<core-header-panel mode="waterfall">
+			<core-toolbar id="core_toolbar" class="core-header">
+				<div id="div" flex>
+					<strong id="strong"><span class="fa fa-paw"></span> <span class="blue">P</span><span class="pink">E</span><span class="gray">T</span></strong>Patinhas
+				</div>
+				<paper-button label="Pets que amo" icon="favorite" id="love"></paper-button>
+				<paper-button label="Sair" icon="exit-to-app" id="logout"></paper-button>
+			</core-toolbar>
+			<div class="content">
+				<template repeat="{{pet in wall.data}}">
+					<figure-box
+					src="http://lorempixum.com/600/600?{{pet.id}}"
+					class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6"
+					href="#!/{{pet.id}}"
+					caption="{{pet.name}}"
+					>
+						<menu>
+							<paper-fab icon="favorite"></paper-fab>
+						</menu>
+					</figure-box>
+				</template>
+
+			</div>
+		</core-header-panel>
+	</template>
+	<script>
+		Polymer({
+
+		});
+	</script>
 </polymer-element>
