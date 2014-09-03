@@ -189,17 +189,18 @@ module.exports = function (grunt) {
             '.htaccess',
             'elements/**',
             'images/{,*/}*.{webp,gif}',
-            'bower_components/**'
+            'bower_components/**',
+						'data/*'
           ]
         }]
       }
     },
 		'gh-pages': {
-            /*options: {
-                clone: 'bower_components/figure-box'
-            },*/
+            options: {
+                base: 'dist'
+            },
             src: [
-                'app/**/*',
+                '**/*',
             ]
         },
 		json_server: {
