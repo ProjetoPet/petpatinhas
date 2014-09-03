@@ -48,6 +48,7 @@
 			}
 			.content {
 				background: #f9f9f9;
+				position: relative;
 			}
 			menu {
 				text-align: center;
@@ -141,6 +142,7 @@
 				</core-tooltip>
 			</core-toolbar>
 			<div class="content">
+				<pet-window></pet-window>
 				<template repeat="{{pet in wall.data}}">
 					<figure-box src="http://lorempixum.com/600/600?{{pet.id}}" class="fancy black full-width col-md-3 col-lg-2 col-sm-4 col-xs-6" href="#!/{{pet.id}}" caption="{{pet.name}}">
 						<menu>
@@ -152,7 +154,6 @@
 						</footer>
 					</figure-box>
 				</template>
-
 			</div>
 		</core-header-panel>
 	</template>
