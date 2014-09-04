@@ -1,5 +1,11 @@
 # PetPatinhas
 
+Rede social para 
+
+![GitHub Logo](/mockups/mural.png)
+
+# Descrição
+
 O PetPatinhas é o carro chefe do ProjetoPet. Trata-se de uma rede social para compartilhamento e atividades com temática em seu animal de estimação.
 
 Tendo uma visão de atividade social, também é tratado como foco a adoção e doação de animais, bem como divulgar achados e perdidos.
@@ -20,8 +26,6 @@ Como o objetivo é oferecer o melhor produto, também é buscado em tecnologias 
 
 Como espera-se algo grande, o projeto será dividido em módulos, que atenderam às expectativas:
 
-## Fase 1
-
 Módulo | Modelagem | Serviço | Front-end
 ---|--- |--- |---
 `Mural` | - | - | - 
@@ -29,3 +33,5 @@ Módulo | Modelagem | Serviço | Front-end
 `Cadastro do usuário` | - | - | - 
 `Login` | - | - | - 
 `Cadastro do animal` | - | - | - 
+
+Para os projetos de modelagem e serviço, serão criados repositórios separados.

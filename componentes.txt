@@ -1,0 +1,24 @@
+figure-box
+	pet-box
+
+x-wall
+	pet-wall
+
+micro-services[baseurl]
+  service-map[name,src,methods:[get,post,put,delete],params:[]]->Services[name]
+
+route-context[startup]
+  route-map[name, rule, action, page, modal]
+  
+x-gallery
+  x-rotator
+
+action-link[icon, label, action]
+
+pet-patinhas
+  pet-box :: figure-box
+  pet-window
+    pet-card
+    pet-gallery :: x-gallery
+    pet-properties
+      pet-property[type, key, icon, value, visible]
