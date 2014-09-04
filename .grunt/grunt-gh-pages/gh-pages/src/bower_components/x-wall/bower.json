@@ -1,0 +1,19 @@
+{
+    "name": "x-wall",
+    "version": "0.0.1",
+    "description": "Infinite scroll wall",
+    "license": "MIT",
+    "main": "dist/x-wall.html",
+    "keywords": [
+        "polymer",
+        "web-components"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#~0.4.0"
+    }
+}

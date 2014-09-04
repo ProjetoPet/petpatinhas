@@ -1,0 +1,165 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="pet-patinhas" attributes="">
+	<template>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+		<style>
+			:host {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			core_toolbar {
+				right: 0px;
+				left: 0px;
+				color: black;
+				fill: rgb(255, 255, 255);
+				top: 0px;
+				position: absolute;
+				background-color: rgb(255, 255, 255);
+			}
+			core-header-panel {
+				float: left;
+				width: auto;
+				height: auto;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
+			core-header-panel[mode=cover]::shadow #mainContainer {
+				left: 70px;
+			}
+			.core-header {
+				height: 60px;
+				line-height: 60px;
+				font-size: 18px;
+				padding: 0 10px;
+				background-color: #f9f9f9;
+				color: #333;
+				transition: height 0.2s;
+				border-bottom: 1px solid #efefef;
+				line-height: 0;
+			}
+			.content {
+				background: #f9f9f9;
+				position: relative;
+			}
+			menu {
+				text-align: center;
+			}
+			paper-fab {
+				background: #de169a;
+				color: white;
+			}
+			.pink {
+				color: #de169a;
+			}
+			.blue {
+				color: #10b6d9;
+			}
+			.gray {
+				color: #666;
+			}
+			core-toolbar core-tooltip{
+				position: relative;
+			}
+			core-toolbar core-tooltip:after{
+				content:"|";
+				display: inline-block;
+				position:absolute;
+				right:-10px;
+				top:17px;
+				color:black;
+				background: white;
+			}
+			core-toolbar core-tooltip:last-child:after{
+				content:""
+			}
+			paper-button::shadow #content > span{
+				margin:0;
+				margin-right: .5em;
+			}
+			paper-fab, paper-button{
+				position:relative;
+				overflow: hidden;
+			}
+			.loading:after{
+				content:"";
+				position:absolute;
+				width:100%;
+				height:100%;
+				background:white;
+				top:0;
+				left:-100%;
+				opacity: 0.5;
+				-webkit-animation: loading infinite 1s;
+				-o-animation: loading infinite 1s;
+				animation: loading infinite 1s;
+			}
+			@-webkit-keyframes loading{
+				0%:{
+					left:-100%;
+				}
+				100%{
+					left:100%;
+				}
+			}
+			@keyframes loading{
+				0%:{
+					left:-100%;
+				}
+				100%{
+					left:100%;
+				}
+			}
+		</style>
+
+		<core-ajax auto url="../data/pet.json" response="{{wall}}"></core-ajax>
+
+		<core-header-panel mode="waterfall">
+			<core-toolbar id="core_toolbar" class="core-header">
+				<div id="logo" flex>
+					<strong id="strong"><span class="fa fa-paw"></span> <span class="blue">P</span><span class="pink">E</span><span class="gray">T</span></strong>Patinhas
+				</div>
+				<core-tooltip label="Pets que amo" position="bottom">
+					<paper-button icon="favorite" id="love"></paper-button>
+				</core-tooltip>
+
+				<core-tooltip label="Adicionar Pet">
+					<paper-button icon="add-box" id="add"></paper-button>
+				</core-tooltip>
+				<core-tooltip label="Meus pets">
+					<paper-button icon="account-box" id="mine"></paper-button>
+				</core-tooltip>
+				<core-tooltip label="Sair">
+					<paper-button icon="exit-to-app" id="logout"></paper-button>
+				</core-tooltip>
+			</core-toolbar>
+			<div class="content">
+				<pet-window></pet-window>
+				<template repeat="{{pet in wall.data}}">
+					<figure-box src="http://lorempixum.com/600/600?{{pet.id}}" class="fancy black full-width col-md-3 col-lg-2 col-sm-4 col-xs-6" href="#!/{{pet.id}}" caption="{{pet.name}}">
+						<menu>
+							<paper-fab icon="favorite"></paper-fab>
+						</menu>
+						<footer>
+							<span><span class="fa fa-heart"></span> 3</span>
+							<span class="pull-right"><span class="fa fa-arrow-right"></span> 3&nbsp;&nbsp;&nbsp;</span>
+						</footer>
+					</figure-box>
+				</template>
+			</div>
+		</core-header-panel>
+	</template>
+	<script>
+		Polymer({
+
+		});
+	</script>
+</polymer-element>
