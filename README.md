@@ -1,8 +1,6 @@
 # PetPatinhas
 
-Rede social para 
-
-![GitHub Logo](/mockups/mural.png)
+![Mural](/mockups/mural.png)
 
 # Descrição
 
@@ -13,6 +11,8 @@ Tendo uma visão de atividade social, também é tratado como foco a adoção e 
 Inicialmente, o PetPatinhas se tratou de um projeto de TCC de um grupo no IFSP-SP em 2012. O projeto ficou congelado por um tempo, mas deu origem à documentações e um [artigo acadêmico](http://ceur-ws.org/Vol-1051/paper0.pdf), para a área de Interação Humano Computador.
 
 O foco do PetPatinhas é gerar um produto de alto padrão e qualidade para colaborar com o bem estar dos animais, fomentando a ajuda e o interesse em cuidar ou divulgar bom conteúdo.
+
+![Perfil](/mockups/perfil.png)
 
 # Tecnologia
 
@@ -35,3 +35,7 @@ Módulo | Modelagem | Serviço | Front-end
 `Cadastro do animal` | - | - | - 
 
 Para os projetos de modelagem e serviço, serão criados repositórios separados.
+
+# Licença
+
+[MIT License](http://octavioturra.mit-license.org/) © ProjetoPet.
