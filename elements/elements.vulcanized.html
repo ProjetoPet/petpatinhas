@@ -2232,6 +2232,254 @@ core-icon {
 
 </polymer-element>
 </div>
+<div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+The `core-tooltip` element creates a hover tooltip centered for the content
+it contains. It can be positioned on the top|bottom|left|right of content using
+the `position` attribute.
+
+To include HTML in the tooltip, include the `tip` attribute on the relevant
+content.
+
+<b>Example</b>:
+
+    <core-tooltip label="I'm a tooltip">
+      <span>Hover over me.</span>
+    </core-tooltip>
+
+<b>Example</b> - positioning the tooltip to the right:
+
+    <core-tooltip label="I'm a tooltip to the right" position="right">
+      <polymer-ui-icon-button icon="drawer"></polymer-ui-icon-button>
+    </core-tooltip>
+
+<b>Example</b> - no arrow and showing by default:
+
+    <core-tooltip label="Tooltip with no arrow and always on" noarrow show>
+      <img src="image.jpg">
+    </core-tooltip>
+
+<b>Example</b> - rich tooltip using the `tip` attribute:
+
+    <core-tooltip>
+      <div>Example of a rich information tooltip</div>
+      <div tip>
+        <img src="profile.jpg">Foo <b>Bar</b> - <a href="#">@baz</a>
+      </div>
+    </core-tooltip>
+
+@group Polymer Core Elements
+@element core-tooltip
+@homepage http://polymer.github.io/core-tooltip
+-->
+
+
+
+<!-- TODO: would be nice to inherit from label to get .htmlFor, and .control,
+           but the latter is readonly. -->
+<!-- TODO: support off center arrows. -->
+<!-- TODO: detect mobile and apply the .large class, instead of manual
+           control. -->
+<!-- TODO: possibly reuse core-overlay. -->
+<polymer-element name="core-tooltip" attributes="noarrow position label show" tabindex="0" assetpath="../bower_components/core-tooltip/">
+<template>
+
+  <style>/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
+
+:host {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+}
+
+:host(:hover) .polymer-tooltip {
+  visibility: visible !important;
+}
+
+:host(:focus) .polymer-tooltip {
+  visibility: visible !important;
+}
+
+.polymer-tooltip:not(.show) {
+  visibility: hidden;
+}
+
+.polymer-tooltip {
+  position: absolute;
+  font-size: 10px;
+  font-family: sans-serif;
+  padding: 8px;
+  color: white;
+  background-color: rgba(0,0,0,0.8);
+  box-sizing: border-box;
+  border-radius: 3px; /* TODO: not in spec. */
+  white-space: nowrap;
+  line-height: 6px;
+  z-index: 1002; /* TODO: this is brittle. */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:host([large]) .polymer-tooltip {
+  line-height: 14px;
+  font-size: 14px;
+  padding: 16px;
+}
+
+.polymer-tooltip.noarrow::after {
+  display: none;
+}
+
+.polymer-tooltip::after {
+  position: absolute;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  border-width: 4px;
+}
+
+.top {
+  margin-bottom: 10px; /* TODO: not specified in spec */
+  bottom: 100%;
+}
+
+.right {
+  margin-left: 10px; /* TODO: not specified in spec */
+  left: 100%;
+}
+
+.bottom {
+  top: 100%;
+  margin-top: 10px; /* TODO: not specified in spec */
+}
+
+.left {
+  margin-right: 10px; /* TODO: not specified in spec */
+  right: 100%;
+}
+
+.polymer-tooltip.bottom::after {
+  bottom: 100%;
+  left: calc(50% - 4px);
+  border-bottom-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.left::after {
+  left: 100%;
+  top: calc(50% - 4px);
+  border-left-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.top::after {
+  top: 100%;
+  left: calc(50% - 4px);
+  border-top-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.right::after {
+  right: 100%;
+  top: calc(50% - 4px);
+  border-right-color: rgba(0,0,0,0.8);
+}
+</style>
+
+  <div id="tooltip" class="polymer-tooltip {{position}} {{ {noarrow: noarrow, show: show} | tokenList}}" layout="" horizontal="" center="">
+    <content select="[tip]">{{label}}</content>
+  </div>
+
+  <content></content>
+
+</template>
+<script>
+
+  Polymer('core-tooltip', {
+
+    /**
+     * A simple string label for the tooltip to display. To display a rich
+     * that includes HTML, use the `tip` attribute on the content.
+     *
+     * @attribute label
+     * @type string
+     * @default null
+     */
+    label: null,
+
+    /**
+     * If true, the tooltip an arrow pointing towards the content.
+     *
+     * @attribute noarrow
+     * @type boolean
+     * @default false
+     */
+    noarrow: false,
+
+    /**
+     * If true, the tooltip displays by default.
+     *
+     * @attribute show
+     * @type boolean
+     * @default false
+     */
+    show: false,
+
+    /**
+     * Positions the tooltip to the top, right, bottom, left of its content.
+     *
+     * @attribute position
+     * @type string
+     * @default 'bottom'
+     */
+    position: 'bottom',
+
+    attached: function() {
+      this.setPosition();
+    },
+
+    labelChanged: function(oldVal, newVal) {
+      // Run if we're not after attached().
+      if (oldVal) {
+        this.setPosition();
+      }
+    },
+
+    setPosition: function() {
+      var controlWidth = this.clientWidth;
+      var controlHeight = this.clientHeight;
+
+      var styles = getComputedStyle(this.$.tooltip);
+      var toolTipWidth = parseFloat(styles.width);
+      var toolTipHeight = parseFloat(styles.height);
+
+      switch (this.position) {
+        case 'top':
+        case 'bottom':
+          this.$.tooltip.style.left = (controlWidth - toolTipWidth) / 2 + 'px';
+          break;
+        case 'left':
+        case 'right':
+          this.$.tooltip.style.top = (controlHeight - toolTipHeight) / 2 + 'px';
+          break;
+      }
+    }
+  });
+
+</script>
+</polymer-element>
+</div>
 
 <div hidden><!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4124,9 +4372,11 @@ figure:hover content::content>header {
 				color: #333;
 				transition: height 0.2s;
 				border-bottom: 1px solid #efefef;
+				line-height: 0;
 			}
 			.content {
 				background: #f9f9f9;
+				position: relative;
 			}
 			menu {
 				text-align: center;
@@ -4144,27 +4394,94 @@ figure:hover content::content>header {
 			.gray {
 				color: #666;
 			}
+			core-toolbar core-tooltip{
+				position: relative;
+			}
+			core-toolbar core-tooltip:after{
+				content:"|";
+				display: inline-block;
+				position:absolute;
+				right:-10px;
+				top:17px;
+				color:black;
+				background: white;
+			}
+			core-toolbar core-tooltip:last-child:after{
+				content:""
+			}
+			paper-button::shadow #content > span{
+				margin:0;
+				margin-right: .5em;
+			}
+			paper-fab, paper-button{
+				position:relative;
+				overflow: hidden;
+			}
+			.loading:after{
+				content:"";
+				position:absolute;
+				width:100%;
+				height:100%;
+				background:white;
+				top:0;
+				left:-100%;
+				opacity: 0.5;
+				-webkit-animation: loading infinite 1s;
+				-o-animation: loading infinite 1s;
+				animation: loading infinite 1s;
+			}
+			@-webkit-keyframes loading{
+				0%:{
+					left:-100%;
+				}
+				100%{
+					left:100%;
+				}
+			}
+			@keyframes loading{
+				0%:{
+					left:-100%;
+				}
+				100%{
+					left:100%;
+				}
+			}
 		</style>
 
 		<core-ajax auto="" url="../data/pet.json" response="{{wall}}"></core-ajax>
 
 		<core-header-panel mode="waterfall">
 			<core-toolbar id="core_toolbar" class="core-header">
-				<div id="div" flex="">
+				<div id="logo" flex="">
 					<strong id="strong"><span class="fa fa-paw"></span> <span class="blue">P</span><span class="pink">E</span><span class="gray">T</span></strong>Patinhas
 				</div>
-				<paper-button label="Pets que amo" icon="favorite" id="love"></paper-button>
-				<paper-button label="Sair" icon="exit-to-app" id="logout"></paper-button>
+				<core-tooltip label="Pets que amo" position="bottom">
+					<paper-button icon="favorite" id="love"></paper-button>
+				</core-tooltip>
+
+				<core-tooltip label="Adicionar Pet">
+					<paper-button icon="add-box" id="add"></paper-button>
+				</core-tooltip>
+				<core-tooltip label="Meus pets">
+					<paper-button icon="account-box" id="mine"></paper-button>
+				</core-tooltip>
+				<core-tooltip label="Sair">
+					<paper-button icon="exit-to-app" id="logout"></paper-button>
+				</core-tooltip>
 			</core-toolbar>
 			<div class="content">
+				<pet-window></pet-window>
 				<template repeat="{{pet in wall.data}}">
-					<figure-box src="http://lorempixum.com/600/600?{{pet.id}}" class="full-width col-md-3 col-lg-2 col-sm-4 col-xs-6" href="#!/{{pet.id}}" caption="{{pet.name}}">
+					<figure-box src="http://lorempixum.com/600/600?{{pet.id}}" class="fancy black full-width col-md-3 col-lg-2 col-sm-4 col-xs-6" href="#!/{{pet.id}}" caption="{{pet.name}}">
 						<menu>
 							<paper-fab icon="favorite"></paper-fab>
 						</menu>
+						<footer>
+							<span><span class="fa fa-heart"></span> 3</span>
+							<span class="pull-right"><span class="fa fa-arrow-right"></span> 3&nbsp;&nbsp;&nbsp;</span>
+						</footer>
 					</figure-box>
 				</template>
-
 			</div>
 		</core-header-panel>
 	</template>
@@ -4187,6 +4504,98 @@ figure:hover content::content>header {
   </template>
   <script>
     Polymer('font-awesome-icons',{
+
+    });
+  </script>
+</polymer-element>
+</div>
+<div hidden>
+
+<polymer-element name="pet-window" attributes="" assetpath="">
+  <template>
+    <style>
+      :host {
+        display: block;
+				position:absolute;
+				top:0;
+				left:0;
+				right:0;
+				bottom:0;
+				background:red;
+				z-index:10;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('pet-window',{
+
+    });
+  </script>
+</polymer-element>
+</div>
+<div hidden>
+
+<polymer-element name="pet-gallery" attributes="" assetpath="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('pet-gallery',{
+
+    });
+  </script>
+</polymer-element>
+</div>
+<div hidden>
+
+<polymer-element name="pet-properties" attributes="" assetpath="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('pet-properties',{
+
+    });
+  </script>
+</polymer-element>
+</div>
+<div hidden>
+
+<polymer-element name="pet-property" attributes="" assetpath="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('pet-property',{
+
+    });
+  </script>
+</polymer-element>
+</div>
+<div hidden>
+
+<polymer-element name="pet-card" attributes="" assetpath="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('pet-card',{
 
     });
   </script>
