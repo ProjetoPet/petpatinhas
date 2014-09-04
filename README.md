@@ -12,7 +12,7 @@ Inicialmente, o PetPatinhas se tratou de um projeto de TCC de um grupo no IFSP-S
 
 O foco do PetPatinhas é gerar um produto de alto padrão e qualidade para colaborar com o bem estar dos animais, fomentando a ajuda e o interesse em cuidar ou divulgar bom conteúdo.
 
-![Perfil](/mockups/perfil.png)
+![Perfil](/mockups/pefil.png)
 
 # Tecnologia
 
