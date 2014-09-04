@@ -20,6 +20,8 @@ Como o objetivo é oferecer o melhor produto, também é buscado em tecnologias 
 
 Como espera-se algo grande, o projeto será dividido em módulos, que atenderam às expectativas:
 
+## Fase 1
+
 Módulo | Modelagem | Serviço | Front-end
 ---|--- |--- |---
 `Mural` | - | - | - 
