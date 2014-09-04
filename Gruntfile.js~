@@ -190,8 +190,7 @@ module.exports = function (grunt) {
             'elements/**',
             'images/{,*/}*.{webp,gif}',
             'bower_components/**',
-            'data/*',
-	    'CNAME'
+						'data/*'
           ]
         }]
       }
@@ -207,7 +206,7 @@ module.exports = function (grunt) {
 		json_server: {
         options: {
             port: 13337,
-            hostname: 'localhost',
+            hostname: 'lodalhost',
             db: 'app/data/pet.json'
         }
     }
