@@ -1,19 +1,69 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="pet-window" attributes="">
+<polymer-element name="pet-window" attributes="pid">
   <template>
     <style>
-      :host {
-        display: block;
-				position:absolute;
-				top:0;
-				left:0;
-				right:0;
-				bottom:0;
-				background:red;
-				z-index:10;
+      #window {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width:100%;
+        height:100%;
+        z-index: 10;
+        background: rgba(0,0,0,0.8);
+        min-width:320px;
+      }
+      aside{
+        min-width:320px;
+        width:100%;
+        flex: 1 50%;
+      }
+      article{
+        width:100%;
+        background: white;
+        padding:1em;
+        flex: 2 100%;
+      }
+      header{
+        border-bottom: 1px solid black;
+        width:100%;
+        padding-bottom: .2em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        float:left;
+      }
+      header nav{
+        float:right;
+        line-height: 30px;
+        vertical-align: middle;
+        padding-right: 1em;
+      }
+      header h1{
+        float:left;
+        display: inline;
+        margin:0;
       }
     </style>
+    <div layout id="window">
+      <aside>
+        <pet-gallery pid="{{pid}}"></pet-gallery>
+      </aside>
+      <article>
+        <header>
+          <h1>Nome do Bichinho</h1>
+          <nav>
+            <a href="/app/index.html#/">x</a>
+          </nav>
+        </header>
+        <pet-profile pid="{{pet}}"></pet-profile>
+      </article>
+    </div>
   </template>
   <script>
     Polymer({

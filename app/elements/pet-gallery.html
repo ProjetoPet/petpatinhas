@@ -1,12 +1,48 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="pet-gallery" attributes="">
+<polymer-element name="pet-gallery" attributes="pid">
   <template>
     <style>
       :host {
         display: block;
+        padding:2em;
+      }
+      img{
+        max-width:100%;
+      }
+      nav{
+        width:100%;
+        text-align: center;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+      }
+      nav a{
+        flex: auto 20%;
+        margin:10px;
+        display: inline-block;
+      }
+      nav a img{
+        width: 100%;
       }
     </style>
+    <figure>
+      <img src="http://lorempixum.com/600/600?10" alt="animal">
+    </figure>
+    <nav>
+     <a href="">
+        <img alt="" src="http://lorempixum.com/150/150?10"></a>
+      <a href="">
+        <img alt="" src="http://lorempixum.com/150/150?1"></a>
+      <a href="">
+        <img alt="" src="http://lorempixum.com/150/150?5"></a>
+      <a href="">
+        <img alt="" src="http://lorempixum.com/150/150?3"></a>
+      <a href="">
+        <img alt="" src="http://lorempixum.com/150/150?4"></a>
+    </nav>
   </template>
   <script>
     Polymer({

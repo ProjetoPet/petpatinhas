@@ -8,7 +8,9 @@
     "figure-box": "octavioturra/figure-box#~0.9.5",
     "x-wall": "octavioturra/x-wall",
     "bootstrap": "~3.2.0",
-    "font-awesome": "~4.2.0"
+    "font-awesome": "~4.2.0",
+    "app-router": "~0.7.0",
+    "polymer-fontawesome": "~1.0.0-beta.2"
   },
   "authors": [
     "Octavio Turra <octavio.turra@gmail.com>"
