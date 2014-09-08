@@ -1,9 +1,12 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-router/app-router.html">
 
 <polymer-element name="pet-patinhas" attributes="">
   <template>
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+
     <style>
       :host {
         position: absolute;
@@ -13,117 +16,19 @@
         height: 100%;
         box-sizing: border-box;
       }
-      core_toolbar {
-        right: 0px;
-        left: 0px;
-        color: black;
-        fill: rgb(255, 255, 255);
-        top: 0px;
-        position: absolute;
-        background-color: rgb(255, 255, 255);
-      }
-      core-header-panel {
-        float: left;
-        width: auto;
-        height: auto;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-      }
-      core-header-panel[mode=cover]::shadow #mainContainer {
-        left: 70px;
-      }
-      .core-header {
-        height: 60px;
-        line-height: 60px;
-        font-size: 18px;
-        padding: 0 10px;
-        background-color: #f9f9f9;
-        color: #333;
-        transition: height 0.2s;
-        border-bottom: 1px solid #efefef;
-        line-height: 0;
-      }
-      .content {
-        background: #f9f9f9;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        float: left;
-      }
-      menu {
-        text-align: center;
-      }
-      paper-fab {
-        background: #de169a;
-        color: white;
-      }
-      .pink {
-        color: #de169a;
-      }
-      .blue {
-        color: #10b6d9;
-      }
-      .gray {
-        color: #666;
-      }
-      core-toolbar core-tooltip {
-        position: relative;
-      }
-      core-toolbar core-tooltip:after {
-        content: "|";
-        display: inline-block;
-        position: absolute;
-        right: -10px;
-        top: 17px;
-        color: black;
-        background: white;
-      }
-      core-toolbar core-tooltip:last-child:after {
-        content: ""
-      }
-      paper-button::shadow #content > span {
-        margin: 0;
-        margin-right: .5em;
-      }
-      paper-fab,
-      paper-button {
-        position: relative;
-        overflow: hidden;
-      }
-      .loading:after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: white;
-        top: 0;
-        left: -100%;
-        opacity: 0.5;
-        -webkit-animation: loading infinite 1s;
-        -o-animation: loading infinite 1s;
-        animation: loading infinite 1s;
-      }
-      @-webkit-keyframes loading {
-        0%: {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
-      @keyframes loading {
-        0%: {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
     </style>
 
+      <app-router>
+        <app-route template path="*">
+          <template>
+            <script>
+              alert('Welcome');
+            </script>
+          </template>
+        </app-route>
+      </app-router>
+
+    <!--
     <core-ajax auto url="../data/pet.json" response="{{wall}}"></core-ajax>
 
     <core-header-panel mode="waterfall">
@@ -160,22 +65,8 @@
           </figure-box>
         </template>
       </div>
-      <app-router>
-         <app-route path="/pet/" element="pet-window"></app-route>
-        <app-route path="/pet/:id" template>
-          <template>
-            <pet-window></pet-window>
-          </template>
-        </app-route>
-        <app-route path="*" template>
-          <template>
-            <script>
-              alert('')
-            </script>
-          </template>
-        </app-route>
-      </app-router>
     </core-header-panel>
+-->
   </template>
   <script>
     Polymer({
